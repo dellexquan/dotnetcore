@@ -28,5 +28,4 @@ class Test1
             logger.LogError(e, "Fail to read from the file.");
         }
     }
-
 }
