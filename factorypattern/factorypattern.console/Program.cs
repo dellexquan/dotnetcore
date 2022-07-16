@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Samples;
 using Factories;
 
 var services = new ServiceCollection();
