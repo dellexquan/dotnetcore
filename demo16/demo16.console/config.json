@@ -1,0 +1,8 @@
+{
+    "name": "yzk",
+    "age": 18,
+    "proxy": {
+        "address": "localhost",
+        "port": "8080"
+    }
+}
