@@ -14,8 +14,6 @@
 //     Age = 38
 // };
 
-using Microsoft.EntityFrameworkCore;
-
 using (var db = new EntityDbContext())
 {
     //db.Books!.Add(newBook);
@@ -105,6 +103,13 @@ using (var db = new EntityDbContext())
     System.Console.WriteLine("===============");
     query = db.Books!.Where(b => b.Title == "SQL").Select(b => new { Id = b.Id, Title = b.Title, AuthorName = b.AuthorName, PubTime = b.PubTime, Price = b.Price });
     System.Console.WriteLine(query.Single());
+
+    System.Console.WriteLine("===============");
+    query = db.Books!.Where(b => b.PubTime!.Value.Year > 2010).Select(b => new { Id = b.Id, Title = b.Title, AuthorName = b.AuthorName, PubTime = b.PubTime, Price = b.Price });
+    foreach (var book in query)
+    {
+        System.Console.WriteLine(book);
+    }
 
     System.Console.WriteLine("===============");
     var groups = from b in db.Books
