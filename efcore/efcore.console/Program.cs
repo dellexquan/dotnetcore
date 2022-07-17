@@ -85,7 +85,7 @@ using (var db = new EntityDbContext())
     {
         System.Console.WriteLine(book);
     }
-    System.Console.WriteLine("===============");
+    System.Console.WriteLine("======== =======");
     var perons = db.Persons!.Select(p => new { Id = p.Id, Name = p.Name, Age = p.Age, BirthPlace = p.BirthPlace });
     foreach (var person in perons)
     {
