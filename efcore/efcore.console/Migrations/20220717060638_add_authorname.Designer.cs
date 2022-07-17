@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace efcore.console.Migrations
 {
     [DbContext(typeof(EntityDbContext))]
-    partial class EntityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220717060638_add_authorname")]
+    partial class add_authorname
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.7");
@@ -23,7 +25,6 @@ namespace efcore.console.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("AuthorName")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<double?>("Price")

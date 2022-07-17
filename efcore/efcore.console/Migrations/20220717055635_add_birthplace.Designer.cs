@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace efcore.console.Migrations
 {
     [DbContext(typeof(EntityDbContext))]
-    partial class EntityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220717055635_add_birthplace")]
+    partial class add_birthplace
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.7");
@@ -22,18 +24,13 @@ namespace efcore.console.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("AuthorName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<double?>("Price")
+                    b.Property<double>("Price")
                         .HasColumnType("REAL");
 
-                    b.Property<DateTime?>("PubTime")
+                    b.Property<DateTime>("PubTime")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -51,11 +48,9 @@ namespace efcore.console.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("BirthPlace")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
