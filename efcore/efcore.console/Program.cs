@@ -14,6 +14,8 @@
 //     Age = 38
 // };
 
+using Microsoft.EntityFrameworkCore;
+
 using (var db = new EntityDbContext())
 {
     //db.Books!.Add(newBook);
@@ -81,6 +83,7 @@ using (var db = new EntityDbContext())
 
 
     var books = db.Books!.Select(b => new { Id = b.Id, Title = b.Title, AuthorName = b.AuthorName, PubTime = b.PubTime, Price = b.Price }).OrderBy(b => b.Price);
+    //System.Console.WriteLine(books.ToQueryString());
     foreach (var book in books)
     {
         System.Console.WriteLine(book);

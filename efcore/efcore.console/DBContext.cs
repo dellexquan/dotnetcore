@@ -16,6 +16,7 @@ public class EntityDbContext : DbContext
         var connStr = config["connectionString"];
         optionsBuilder.UseSqlite(connStr);
         optionsBuilder.UseLoggerFactory(loggerFactory);
+        //optionsBuilder.LogTo(Console.WriteLine, LogLevel.Information);
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
