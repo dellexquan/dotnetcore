@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 //register swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+//register service
 builder.Services.AddTransient<ITestServiceA, TestServiceA>();
 builder.Services.AddTransient<ITestServiceB, TestServiceB>();
 
