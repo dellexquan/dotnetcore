@@ -1,4 +1,6 @@
 using System.Security.Claims;
+using System.Text;
+//using System.Identity.Tokens;
 
 namespace jwt.ids.service;
 
@@ -20,7 +22,9 @@ public class CustomJWTService : ICustomJWTService
             new Claim("Age", user.Age.ToString())
         };
 
-        //var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_JWTTokenOptions.SecurityKey));
+        //svar k = Encoding.UTF8.GetBytes("token");
+        //var k = Encoding.UTF8.GetBytes(_JWTTokenOptions.SecurityKey);
+        //var key = new SymmetricSecurityKey(k);
 
         return "token";
     }
