@@ -1,14 +1,19 @@
 using jwt.api.models;
 using jwt.common;
+using jwt.db;
+using jwt.db.model;
 using jwt.service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
 //register svc
+builder.Services.AddTransient<DbContext, JWTDbContext>();
 builder.Services.AddTransient<ICompanyService, CompanyService>();
 builder.Services.AddTransient<ICommodityService, CommodityService>();
 
@@ -99,19 +104,11 @@ app.MapGet("api/get-user", [Authorize(AuthenticationSchemes = JwtBearerDefaults.
     };
 });
 
-app.MapGet("api/get-user-new", (int id, string name,
-    ICompanyService companyService,
-    ICommodityService commodityService) =>
+app.MapGet("api/get-company", (int id, ICompanyService companyService) =>
 {
-    companyService.Add();
-    commodityService.Add();
+    var comp = companyService.Find<Company>(54);
 
-    return new User
-    {
-        Id = 123,
-        Name = "Richard",
-        CreateTime = DateTime.Now
-    };
+    return comp;
 });
 
 
