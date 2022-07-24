@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jwt.db", "jwt.db\jwt.db.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jwt.test", "jwt.test\jwt.test.csproj", "{1F32A995-1057-4FCF-8958-092733EFB1D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jwt.service", "jwt.service\jwt.service.csproj", "{EBC0226C-3AFE-4A97-8BCB-66EF39776373}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{1F32A995-1057-4FCF-8958-092733EFB1D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F32A995-1057-4FCF-8958-092733EFB1D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F32A995-1057-4FCF-8958-092733EFB1D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBC0226C-3AFE-4A97-8BCB-66EF39776373}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBC0226C-3AFE-4A97-8BCB-66EF39776373}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBC0226C-3AFE-4A97-8BCB-66EF39776373}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBC0226C-3AFE-4A97-8BCB-66EF39776373}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

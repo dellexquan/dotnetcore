@@ -1,5 +1,6 @@
 using jwt.api.models;
 using jwt.common;
+using jwt.service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
@@ -7,6 +8,10 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+//register svc
+builder.Services.AddTransient<ICompanyService, CompanyService>();
+builder.Services.AddTransient<ICommodityService, CommodityService>();
+
 //register swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
@@ -90,6 +95,21 @@ app.MapGet("api/get-user", [Authorize(AuthenticationSchemes = JwtBearerDefaults.
     {
         Id = 123,
         Name = "Dellex Quan",
+        CreateTime = DateTime.Now
+    };
+});
+
+app.MapGet("api/get-user-new", (int id, string name,
+    ICompanyService companyService,
+    ICommodityService commodityService) =>
+{
+    companyService.Add();
+    commodityService.Add();
+
+    return new User
+    {
+        Id = 123,
+        Name = "Richard",
         CreateTime = DateTime.Now
     };
 });

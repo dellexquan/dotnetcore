@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\jwt.common\jwt.common.csproj" />
+    <ProjectReference Include="..\jwt.service\jwt.service.csproj" />
   </ItemGroup>
 
 </Project>
