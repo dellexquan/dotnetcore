@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jwt.ids", "jwt.ids\jwt.ids.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jwt.common", "jwt.common\jwt.common.csproj", "{F7CC913B-494F-4C82-A563-EA1AC33F0AB5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jwt.db", "jwt.db\jwt.db.csproj", "{F646741D-ACEE-4B4E-B6BB-9A51C5262821}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jwt.test", "jwt.test\jwt.test.csproj", "{1F32A995-1057-4FCF-8958-092733EFB1D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +34,13 @@ Global
 		{F7CC913B-494F-4C82-A563-EA1AC33F0AB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7CC913B-494F-4C82-A563-EA1AC33F0AB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7CC913B-494F-4C82-A563-EA1AC33F0AB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F646741D-ACEE-4B4E-B6BB-9A51C5262821}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F646741D-ACEE-4B4E-B6BB-9A51C5262821}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F646741D-ACEE-4B4E-B6BB-9A51C5262821}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F646741D-ACEE-4B4E-B6BB-9A51C5262821}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F32A995-1057-4FCF-8958-092733EFB1D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F32A995-1057-4FCF-8958-092733EFB1D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F32A995-1057-4FCF-8958-092733EFB1D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F32A995-1057-4FCF-8958-092733EFB1D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

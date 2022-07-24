@@ -94,4 +94,6 @@ app.MapGet("api/get-user", [Authorize(AuthenticationSchemes = JwtBearerDefaults.
     };
 });
 
+
+
 app.Run();
