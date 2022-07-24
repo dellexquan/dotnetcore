@@ -1,4 +1,5 @@
 using jwt.ids.service;
+using jwt.common;
 using jwt.ids;
 
 var builder = WebApplication.CreateBuilder(args);
