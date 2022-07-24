@@ -17,6 +17,8 @@ builder.Services.AddCors(options =>
 });
 //register service
 builder.Services.AddTransient<ICustomJWTService, CustomJWTService>();
+//register config option
+builder.Services.Configure<JWTTokenOptions>(builder.Configuration.GetSection("JWTTokenOptions"));
 
 var app = builder.Build();
 //enable swagger
