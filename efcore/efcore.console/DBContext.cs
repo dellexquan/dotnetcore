@@ -5,8 +5,8 @@ using Microsoft.Extensions.Logging;
 public class EntityDbContext : DbContext
 {
     public static readonly ILoggerFactory loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
-    public DbSet<Book>? Books { get; set; }
-    public DbSet<Person>? Persons { get; set; }
+    public DbSet<Book> Books { get; set; } = null!;
+    public DbSet<Person> Persons { get; set; } = null!;
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         //var connStr = @"Data Source=entity.db";
