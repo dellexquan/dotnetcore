@@ -11,7 +11,7 @@ using (var db = new EntityDbContext())
 void QueryComment(EntityDbContext db)
 {
     var comment = db.Comments.Include(c => c.Article).FirstOrDefault();
-    PrintComment(comment);
+    PrintComment(comment!);
 }
 
 void PrintComment(Comment comment)
@@ -34,8 +34,8 @@ void PrintCommentEntity(Comment comment)
 {
     var c = new
     {
-        Id = comment.Id,
-        Message = comment.Message
+        comment.Id,
+        comment.Message
     };
     System.Console.WriteLine(JsonSerializer.Serialize(c));
 }
@@ -44,9 +44,9 @@ void PrintArticleEntity(Article article)
 {
     var a = new
     {
-        Id = article.Id,
-        Title = article.Title,
-        Content = article.Content
+        article.Id,
+        article.Title,
+        article.Content
     };
     System.Console.WriteLine(JsonSerializer.Serialize(a));
 }
