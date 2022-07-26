@@ -5,7 +5,25 @@ using (var db = new EntityDbContext())
 {
     //Insert(db);
     //QueryArticle(db);
-    QueryComment(db);
+    //QueryComment(db);
+    QueryCommentWithArticleId(db);
+}
+
+void QueryCommentWithArticleId(EntityDbContext db)
+{
+    var comment = db.Comments.FirstOrDefault();
+    PrintCommentWithArticleId(comment!);
+}
+
+void PrintCommentWithArticleId(Comment comment)
+{
+    var c = new
+    {
+        comment.Id,
+        comment.Message,
+        comment.ArticleId
+    };
+    System.Console.WriteLine(JsonSerializer.Serialize(c));
 }
 
 void QueryComment(EntityDbContext db)
