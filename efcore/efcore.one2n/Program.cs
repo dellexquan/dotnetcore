@@ -4,11 +4,59 @@ using Microsoft.EntityFrameworkCore;
 using (var db = new EntityDbContext())
 {
     //InsertArticle(db);
-    QueryArticle(db);
+    //QueryArticle(db);
     //QueryComment(db);
     //QueryCommentWithArticleId(db);
     //InsertLeave(db);
     //QueryLeave(db);
+    //InsertOrg(db);
+    QueryOrg(db);
+}
+
+void QueryOrg(EntityDbContext db)
+{
+    var root = db.OrgUnits.Where(o => o.Parent == null).Include(o => o.Children).FirstOrDefault();
+    PrintOrg(root!);
+}
+
+void PrintOrg(OrgUnit org)
+{
+    PrintOrgEntity(org);
+    foreach (var sub in org.Children)
+    {
+        PrintOrg(sub);
+    }
+}
+
+void PrintOrgEntity(OrgUnit org)
+{
+    var o = new
+    {
+        org.Id,
+        org.Name
+    };
+    System.Console.WriteLine(JsonSerializer.Serialize(o));
+}
+
+void InsertOrg(EntityDbContext db)
+{
+    var root = new OrgUnit
+    {
+        Name = "Aon1.0",
+        Children = new List<OrgUnit>
+        {
+            new OrgUnit
+            {
+                Name = "Aon2.1"
+            },
+            new OrgUnit
+            {
+                Name = "Aon2.2"
+            }
+        }
+    };
+    db.OrgUnits.Add(root);
+    db.SaveChanges();
 }
 
 void QueryLeave(EntityDbContext db)

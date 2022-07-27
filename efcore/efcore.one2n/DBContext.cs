@@ -9,6 +9,7 @@ public class EntityDbContext : DbContext
     public DbSet<Comment> Comments { get; set; } = null!;
     public DbSet<User> Users { get; set; } = null!;
     public DbSet<Leave> Leaves { get; set; } = null!;
+    public DbSet<OrgUnit> OrgUnits { get; set; } = null!;
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         //var connStr = @"Data Source=entity.db";
