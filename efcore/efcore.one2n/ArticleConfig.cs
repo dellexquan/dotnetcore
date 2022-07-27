@@ -7,6 +7,6 @@ class AriticleConfig : IEntityTypeConfiguration<Article>
     {
         builder.Property(a => a.Content).IsRequired().IsUnicode();
         builder.Property(a => a.Title).IsRequired().IsUnicode();
-
+        builder.HasMany(a => a.Comments).WithOne(c => c.Article).HasForeignKey(c => c.ArticleId).IsRequired();
     }
 }

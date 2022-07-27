@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using (var db = new EntityDbContext())
 {
     //InsertArticle(db);
-    //QueryArticle(db);
+    QueryArticle(db);
     //QueryComment(db);
     //QueryCommentWithArticleId(db);
     //InsertLeave(db);
-    QueryLeave(db);
+    //QueryLeave(db);
 }
 
 void QueryLeave(EntityDbContext db)
