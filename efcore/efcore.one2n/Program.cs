@@ -3,10 +3,55 @@ using Microsoft.EntityFrameworkCore;
 
 using (var db = new EntityDbContext())
 {
-    //Insert(db);
+    //InsertArticle(db);
     //QueryArticle(db);
     //QueryComment(db);
-    QueryCommentWithArticleId(db);
+    //QueryCommentWithArticleId(db);
+    //InsertLeave(db);
+    QueryLeave(db);
+}
+
+void QueryLeave(EntityDbContext db)
+{
+    var leave = db.Leaves.Include(l => l.Approver).Include(l => l.Requester).FirstOrDefault();
+    PrintLeave(leave!);
+}
+
+void PrintLeave(Leave leave)
+{
+    PrintLeaveEntity(leave);
+    PrintUserEntity(leave.Requester);
+    if (leave.Approver != null)
+        PrintUserEntity(leave.Approver);
+}
+
+void PrintUserEntity(User user)
+{
+    System.Console.WriteLine(JsonSerializer.Serialize(user));
+}
+
+void PrintLeaveEntity(Leave leave)
+{
+    var l = new
+    {
+        leave.Id,
+        leave.ApproverId,
+        leave.RequesterId,
+        leave.Remarks
+    };
+    System.Console.WriteLine(JsonSerializer.Serialize(l));
+}
+
+void InsertLeave(EntityDbContext db)
+{
+    var leave = new Leave
+    {
+        Requester = new User { Name = "Dellex Quan" },
+        Approver = new User { Name = "YZK" },
+        Remarks = "Approve!"
+    };
+    db.Leaves.Add(leave);
+    db.SaveChanges();
 }
 
 void QueryCommentWithArticleId(EntityDbContext db)
@@ -75,7 +120,7 @@ void QueryArticle(EntityDbContext db)
     PrintArticle(article!);
 }
 
-void Insert(EntityDbContext db)
+void InsertArticle(EntityDbContext db)
 {
     var a1 = new Article
     {

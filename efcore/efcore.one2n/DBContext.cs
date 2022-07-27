@@ -7,6 +7,8 @@ public class EntityDbContext : DbContext
     public static readonly ILoggerFactory loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
     public DbSet<Article> Articles { get; set; } = null!;
     public DbSet<Comment> Comments { get; set; } = null!;
+    public DbSet<User> Users { get; set; } = null!;
+    public DbSet<Leave> Leaves { get; set; } = null!;
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         //var connStr = @"Data Source=entity.db";
