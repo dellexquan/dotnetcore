@@ -12,6 +12,8 @@ public class EntityDbContext : DbContext
     public DbSet<OrgUnit> OrgUnits { get; set; } = null!;
     public DbSet<Order> Orders { get; set; } = null!;
     public DbSet<Delivery> Deliveries { get; set; } = null!;
+    public DbSet<Student> Students { get; set; } = null!;
+    public DbSet<Teacher> Teachers { get; set; } = null!;
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         //var connStr = @"Data Source=entity.db";

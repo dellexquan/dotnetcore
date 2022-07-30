@@ -12,8 +12,77 @@ using (var db = new EntityDbContext())
     //InsertOrg(db);
     //QueryOrg(db);
     //InsertOrder(db);
-    QueryOrder(db);
+    //QueryOrder(db);
     //QueryDelivery(db);
+    //InsertStudent(db);
+    //QueryStudent(db);
+    //InsertTeacher(db);
+    QueryTeacher(db);
+}
+
+void InsertStudent(EntityDbContext db)
+{
+    var student = new Student
+    {
+        Name = "Student001",
+        Teachers = new List<Teacher>
+        {
+            new Teacher { Name = "Teacher001" },
+            new Teacher { Name = "Teacher002" }
+        }
+    };
+    db.Students.Add(student);
+    db.SaveChanges();
+}
+
+void InsertTeacher(EntityDbContext db)
+{
+    var teacher = db.Teachers.FirstOrDefault();
+    teacher!.Students.Add(new Student
+    {
+        Name = "Student002"
+    });
+    db.SaveChanges();
+}
+
+void QueryTeacher(EntityDbContext db)
+{
+    var teacher = db.Teachers.Include(t => t.Students).FirstOrDefault();
+    PrintTeacherEntity(teacher!);
+    foreach (var student in teacher!.Students)
+    {
+        PrintStudentEntity(student);
+    }
+}
+
+void QueryStudent(EntityDbContext db)
+{
+    var student = db.Students.Include(s => s.Teachers).FirstOrDefault();
+    PrintStudentEntity(student!);
+    foreach (var teacher in student!.Teachers)
+    {
+        PrintTeacherEntity(teacher);
+    }
+}
+
+void PrintTeacherEntity(Teacher teacher)
+{
+    var t = new
+    {
+        teacher.Id,
+        teacher.Name
+    };
+    System.Console.WriteLine(JsonSerializer.Serialize(t));
+}
+
+void PrintStudentEntity(Student student)
+{
+    var s = new
+    {
+        student.Id,
+        student.Name
+    };
+    System.Console.WriteLine(JsonSerializer.Serialize(s));
 }
 
 void QueryDelivery(EntityDbContext db)
