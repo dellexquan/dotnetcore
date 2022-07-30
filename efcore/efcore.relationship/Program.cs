@@ -17,7 +17,18 @@ using (var db = new EntityDbContext())
     //InsertStudent(db);
     //QueryStudent(db);
     //InsertTeacher(db);
-    QueryTeacher(db);
+    //QueryTeacher(db);
+    //ComplexQueryArticle(db);
+    ComplexQueryOrder(db);
+}
+
+void ComplexQueryOrder(EntityDbContext db)
+{
+    var orders = db.Orders.Where(o => o.Delivery.CompanyName == "Dellex Company");
+    foreach (var order in orders)
+    {
+        PrintOrderEntity(order);
+    }
 }
 
 void InsertStudent(EntityDbContext db)
@@ -315,4 +326,14 @@ void InsertArticle(EntityDbContext db)
 
     db.Articles.Add(a1);
     db.SaveChanges();
+}
+
+void ComplexQueryArticle(EntityDbContext db)
+{
+    //var articles = db.Articles.Where(a => a.Comments.Any(c => c.Message.Contains("Comment")));
+    var articles = db.Comments.Where(c => c.Message.Contains("Comment")).Select(c => c.Article).Distinct();
+    foreach (var article in articles)
+    {
+        PrintArticleEntity(article);
+    }
 }
