@@ -10,7 +10,64 @@ using (var db = new EntityDbContext())
     //InsertLeave(db);
     //QueryLeave(db);
     //InsertOrg(db);
-    QueryOrg(db);
+    //QueryOrg(db);
+    //InsertOrder(db);
+    QueryOrder(db);
+    //QueryDelivery(db);
+}
+
+void QueryDelivery(EntityDbContext db)
+{
+    var delivery = db.Deliveries.Include(d => d.Order).FirstOrDefault();
+    PrintDeliveryEntity(delivery!);
+    PrintOrderEntity(delivery!.Order);
+}
+
+void QueryOrder(EntityDbContext db)
+{
+    var order = db.Orders.Include(o => o.Delivery).FirstOrDefault();
+    PrintOrderEntity(order!);
+    if (order!.Delivery != null)
+        PrintDeliveryEntity(order.Delivery);
+}
+
+void PrintDeliveryEntity(Delivery delivery)
+{
+    var d = new
+    {
+        delivery.Id,
+        delivery.CompanyName,
+        delivery.Number,
+        delivery.OrderId
+    };
+    System.Console.WriteLine(JsonSerializer.Serialize(d));
+}
+
+void PrintOrderEntity(Order order)
+{
+    var o = new
+    {
+        order.Id,
+        order.Name,
+        order.Address
+    };
+    System.Console.WriteLine(JsonSerializer.Serialize(o));
+}
+
+void InsertOrder(EntityDbContext db)
+{
+    var order = new Order
+    {
+        Name = "Dellex Product2",
+        Address = "Dellex Street No 2",
+        Delivery = new Delivery
+        {
+            CompanyName = "Dellex Company2",
+            Number = "Dellex002"
+        }
+    };
+    db.Orders.Add(order);
+    db.SaveChanges();
 }
 
 void QueryOrg(EntityDbContext db)
