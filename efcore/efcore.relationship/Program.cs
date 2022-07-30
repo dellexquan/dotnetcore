@@ -20,7 +20,18 @@ using (var db = new EntityDbContext())
     //QueryTeacher(db);
     //ComplexQueryArticle(db);
     //ComplexQueryOrder(db);
-    await InsertArticleWithRawSql(db);
+    //await InsertArticleWithRawSql(db);
+    var articles = QueryArticleWithRawSql(db);
+    foreach (var article in articles)
+    {
+        PrintArticleEntity(article);
+    }
+}
+
+IQueryable<Article> QueryArticleWithRawSql(EntityDbContext db)
+{
+    var minId = 3;
+    return db.Articles.FromSqlInterpolated(@$"select * from Articles where ID > {minId}");
 }
 
 async Task InsertArticleWithRawSql(EntityDbContext db)
