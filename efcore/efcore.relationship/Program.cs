@@ -21,6 +21,44 @@ using (var db = new EntityDbContext())
     //ComplexQueryArticle(db);
     //ComplexQueryOrder(db);
     //await InsertArticleWithRawSql(db);
+    //QueryArticlesWithRawSql(db);
+    await QueryArticlesWithADO(db);
+}
+
+async Task QueryArticlesWithADO(EntityDbContext db)
+{
+    var conn = db.Database.GetDbConnection();
+    if (conn.State != System.Data.ConnectionState.Open)
+    {
+        conn.Open();
+    }
+    using (var cmd = conn.CreateCommand())
+    {
+        cmd.CommandText = @"select a.Id, a.Title, a.Content
+        , case when max(c.Id) > 0 then count(*) else 0 end as CommentNum 
+        from Articles a 
+        left join Comments c on c.ArticleId = a.Id
+        group by a.Id, a.Title, a.Content;
+        ";
+        using (var reader = await cmd.ExecuteReaderAsync())
+        {
+            while (await reader.ReadAsync())
+            {
+                var article = new
+                {
+                    Id = reader.GetInt64(0),
+                    Title = reader.GetString(1),
+                    Content = reader.GetString(2),
+                    CommentNum = reader.GetInt32(3)
+                };
+                System.Console.WriteLine(JsonSerializer.Serialize(article));
+            }
+        }
+    }
+}
+
+void QueryArticlesWithRawSql(EntityDbContext db)
+{
     var articles = QueryArticleWithRawSql(db);
     foreach (var article in articles)
     {
