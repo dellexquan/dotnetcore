@@ -15,11 +15,24 @@ using (var db = new EntityDbContext())
     //QueryOrder(db);
     //QueryDelivery(db);
     //InsertStudent(db);
-    //QueryStudent(db);
+    //Qu eryStudent(db);
     //InsertTeacher(db);
     //QueryTeacher(db);
     //ComplexQueryArticle(db);
-    ComplexQueryOrder(db);
+    //ComplexQueryOrder(db);
+    await InsertArticleWithRawSql(db);
+}
+
+async Task InsertArticleWithRawSql(EntityDbContext db)
+{
+    var a1 = new Article
+    {
+        Title = "Title5",
+        Content = "Content5"
+    };
+    //var sql = $"insert into Articles (Title, Content) values (\"{a1.Title}\",\"{a1.Content}\")";await db.Database.ExecuteSqlRawAsync(sql);
+    //var sql = $"insert into Articles (Title, Content) values (\"{a1.Title}\",\"{a1.Content}\")";
+    await db.Database.ExecuteSqlInterpolatedAsync(@$"insert into Articles (Title, Content) values ({a1.Title},{a1.Content})");
 }
 
 void ComplexQueryOrder(EntityDbContext db)
