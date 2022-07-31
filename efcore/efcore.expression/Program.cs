@@ -19,14 +19,14 @@ var books = new List<Book> {
     new Book {Id=1,Title="book1", Author="Dellex", Price=1.9d},
     new Book {Id=2, Title="book2", Author="Dellex", Price=5.2d}
 };
-var filterBooks = books.QueryBooks("Id", 1);
+var filterBooks = books.QueryBooks("Id", 1).SelectBooks("Id", "Title");
 foreach (var book in filterBooks)
 {
     PrintBookEntity(book);
 }
 
 
-void PrintBookEntity(Book book)
+void PrintBookEntity(object book)
 {
     System.Console.WriteLine(JsonSerializer.Serialize(book));
 }
@@ -84,6 +84,20 @@ public class Book
 
 public static class BooksExtension
 {
+    public static IEnumerable<object> SelectBooks(this IEnumerable<Book> books, params string[] propertyNames)
+    {
+        var p = Parameter(typeof(Book));
+        var propExprList = new List<Expression>();
+        foreach (var propertyName in propertyNames)
+        {
+            var memberAccessExpr = MakeMemberAccess(p, typeof(Book).GetProperty(propertyName)!);
+            var propExpr = Convert(memberAccessExpr, typeof(object));
+            propExprList.Add(propExpr);
+        }
+        var newArrayExpr = NewArrayInit(typeof(object), propExprList);
+        var selectExpress = Lambda<Func<Book, object[]>>(newArrayExpr, p);
+        return books.Select(selectExpress.Compile());
+    }
     public static IEnumerable<Book> QueryBooks(this IEnumerable<Book> books, string propertyName, object value)
     {
         // Expression<Func<Book, bool>> expr = b => b.Author == "Dellex";
