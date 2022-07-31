@@ -28,7 +28,7 @@ using (var db = new EntityDbContext())
 
 void UpdateArticle(EntityDbContext db)
 {
-    var article = db.Articles.Where(a => a.Id == 3).FirstOrDefault();
+    var article = db.Articles.Find(3L);
     article!.Title = "Title6";
     article!.Content = "Content6";
     db.SaveChanges();
