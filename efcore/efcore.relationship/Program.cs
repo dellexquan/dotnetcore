@@ -22,7 +22,16 @@ using (var db = new EntityDbContext())
     //ComplexQueryOrder(db);
     //await InsertArticleWithRawSql(db);
     //QueryArticlesWithRawSql(db);
-    await QueryArticlesWithADO(db);
+    //await QueryArticlesWithADO(db);
+    UpdateArticle(db);
+}
+
+void UpdateArticle(EntityDbContext db)
+{
+    var article = db.Articles.Where(a => a.Id == 3).FirstOrDefault();
+    article!.Title = "Title6";
+    article!.Content = "Content6";
+    db.SaveChanges();
 }
 
 async Task QueryArticlesWithADO(EntityDbContext db)
