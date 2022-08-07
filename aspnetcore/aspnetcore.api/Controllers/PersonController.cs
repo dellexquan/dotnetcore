@@ -43,4 +43,28 @@ public class PersonController : ControllerBase
         var s = await System.IO.File.ReadAllTextAsync("Dellex.txt");
         return s;
     }
+
+    [HttpGet]
+    public People Test2()
+    {
+        return new People
+        {
+            Id = 5,
+            Name = "Dellex",
+            ChildrenNames = new string[] { "aaa", "bbb" }
+        };
+    }
+
+    [HttpGet("{i1}/{i2}")]
+    public int Multiply(int i1, int i2)
+    {
+        return i1 * i2;
+    }
+
+    public class People
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = null!;
+        public string[]? ChildrenNames { get; set; }
+    }
 }
