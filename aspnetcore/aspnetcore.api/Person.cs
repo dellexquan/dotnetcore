@@ -1,3 +1,3 @@
 namespace aspnetcore.api;
 
-public record Person(string Name, int Age);
+public record Person(long Id, string Name, int Age);

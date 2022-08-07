@@ -9,7 +9,7 @@ public class TestController : ControllerBase
     [HttpGet]
     public Person GetPerson()
     {
-        return new Person("Dellex", 18);
+        return new Person(1, "Dellex", 18);
     }
     [HttpPost]
     public string[] SaveNote(SaveNoteRequest req)
