@@ -18,4 +18,10 @@ public class CalculatorController : ControllerBase
     {
         return calculator.Add(i1, i2);
     }
+    [ResponseCache(Duration = 60)]
+    [HttpGet]
+    public DateTime Now()
+    {
+        return DateTime.Now;
+    }
 }
