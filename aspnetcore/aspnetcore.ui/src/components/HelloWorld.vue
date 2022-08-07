@@ -1,6 +1,19 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <div id='loginForm'>
+      User Name: <br/>
+      <input type="text" v-model="state.loginData.userName"/><br/>
+      Password: <br/>
+      <input type="password" v-model="state.loginData.password"/><br/>
+      <br/>
+      <input type="button" value="Login" @click="loginSubmit"/>
+    </div>
+    <div id='output'>
+      <ul v-for="p in state.processes" :key="p.id">
+        {{p.id}} {{p.processName}} {{p.workingSet64}}
+      </ul>
+    </div>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
       check out the
@@ -31,10 +44,33 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  data() {
+    return {
+      state: {
+        loginData: {},
+        processes: []
+      }
+    }
+  },
+  methods: {
+    async loginSubmit()
+    {
+      const payload = this.state.loginData
+      const resp = await axios.post('https://localhost:7295/api/login/login', payload)
+      const data = resp.data
+      if(!data.isLogin)
+      {
+        alert('Login failed!')
+        return;
+      }
+      this.state.processes = data.processes;
+    }
   }
 }
 </script>
