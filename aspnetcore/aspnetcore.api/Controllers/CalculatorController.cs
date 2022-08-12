@@ -40,7 +40,10 @@ public class CalculatorController : ControllerBase
             logger.LogInformation("Get from db and cache.");
 
             //set cache expiration time
-            e.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(10);
+            //absolute expiration
+            //e.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(10);
+            //sliding expiration
+            e.SlidingExpiration = TimeSpan.FromSeconds(10);
 
             return await MyDbContext.GetByIdAsync(id);
         });
