@@ -43,6 +43,9 @@ public class CalculatorController : ControllerBase
             //absolute expiration
             //e.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(10);
             //sliding expiration
+            //e.SlidingExpiration = TimeSpan.FromSeconds(10);
+            //hybrid expiration
+            e.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(30);
             e.SlidingExpiration = TimeSpan.FromSeconds(10);
 
             return await MyDbContext.GetByIdAsync(id);
