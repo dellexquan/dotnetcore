@@ -57,6 +57,7 @@ public class CalculatorController : ControllerBase
         }
         else
         {
+            logger.LogInformation("Get from cache.");
             return result;
         }
     }
