@@ -38,6 +38,10 @@ public class CalculatorController : ControllerBase
         var result = await memoryCache.GetOrCreateAsync($"book-{id}", async (e) =>
         {
             logger.LogInformation("Get from db and cache.");
+
+            //set cache expiration time
+            e.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(10);
+
             return await MyDbContext.GetByIdAsync(id);
         });
 
