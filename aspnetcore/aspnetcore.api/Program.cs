@@ -1,4 +1,5 @@
 using aspnetcore.api;
+using aspnetcore.cache;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMemoryCache();
 builder.Services.AddScoped<ICalculator, Calculator>();
+builder.Services.AddScoped<IMemoryCacheHelper, MemoryCacheHelper>();
 
 string[] urls = new[] { "http://localhost:8080" };
 builder.Services.AddCors(options =>

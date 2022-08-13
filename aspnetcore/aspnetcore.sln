@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aspnetcore.mvc", "aspnetcor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aspnetcore.api", "aspnetcore.api\aspnetcore.api.csproj", "{FFD3E88B-00A6-4BAA-8428-42AF2CAE9456}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aspnetcore.class", "aspnetcore.class\aspnetcore.class.csproj", "{7D4FF40F-6BCB-4293-9D13-F302A8FC2653}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{FFD3E88B-00A6-4BAA-8428-42AF2CAE9456}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFD3E88B-00A6-4BAA-8428-42AF2CAE9456}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFD3E88B-00A6-4BAA-8428-42AF2CAE9456}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D4FF40F-6BCB-4293-9D13-F302A8FC2653}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D4FF40F-6BCB-4293-9D13-F302A8FC2653}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D4FF40F-6BCB-4293-9D13-F302A8FC2653}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D4FF40F-6BCB-4293-9D13-F302A8FC2653}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
