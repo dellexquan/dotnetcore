@@ -1,3 +1,4 @@
+using aspnetcore.common;
 namespace aspnetcore.cache;
 
 public interface IExpirationRandom
@@ -9,7 +10,7 @@ public class ExpirationRandom : IExpirationRandom
 {
     public TimeSpan Next(int baseExpirationSeconds)
     {
-        double sec = Random.Shared.Next(baseExpirationSeconds, baseExpirationSeconds * 2);
+        double sec = Random.Shared.NextDouble(baseExpirationSeconds, baseExpirationSeconds * 2);
         return TimeSpan.FromSeconds(sec);
     }
 }
