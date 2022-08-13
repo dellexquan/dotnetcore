@@ -15,6 +15,7 @@ public class CalculatorController : ControllerBase
     private readonly IDistributedCacheHelper distributedCacheHelper;
     private readonly IMemoryCache memoryCache;
     private readonly IMemoryCacheHelper memoryCacheHelper;
+    private readonly IWebHostEnvironment webHostEnvironment;
     private readonly ILogger<CalculatorController> logger;
 
     public CalculatorController(ICalculator calculator,
@@ -22,6 +23,7 @@ public class CalculatorController : ControllerBase
     IDistributedCacheHelper distributedCacheHelper,
     IMemoryCache memoryCache,
     IMemoryCacheHelper memoryCacheHelper,
+    IWebHostEnvironment webHostEnvironment,
     ILogger<CalculatorController> logger)
     {
         this.calculator = calculator;
@@ -29,6 +31,7 @@ public class CalculatorController : ControllerBase
         this.distributedCacheHelper = distributedCacheHelper;
         this.memoryCache = memoryCache;
         this.memoryCacheHelper = memoryCacheHelper;
+        this.webHostEnvironment = webHostEnvironment;
         this.logger = logger;
     }
 
@@ -151,5 +154,10 @@ public class CalculatorController : ControllerBase
     public string? GetEnvironmentVariable(string key)
     {
         return Environment.GetEnvironmentVariable(key);
+    }
+    [HttpGet]
+    public string GetEnvironmentName()
+    {
+        return webHostEnvironment.EnvironmentName;
     }
 }
