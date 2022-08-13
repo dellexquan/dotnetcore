@@ -11,7 +11,15 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMemoryCache();
 builder.Services.AddScoped<ICalculator, Calculator>();
-builder.Services.AddScoped<IMemoryCacheHelper, MemoryCacheHelper>();
+//add cache helper
+builder.Services.AddCacheHelper();
+
+//config redis
+builder.Services.AddStackExchangeRedisCache(opitons =>
+{
+    opitons.Configuration = "localhost";
+    opitons.InstanceName = "aspnetcore_";
+});
 
 string[] urls = new[] { "http://localhost:8080" };
 builder.Services.AddCors(options =>

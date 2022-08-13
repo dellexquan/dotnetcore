@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Caching.Memory;
 
 namespace aspnetcore.cache;
+
 public interface IMemoryCacheHelper
 {
     TResult? GetOrCreate<TResult>(string cacheKey, Func<ICacheEntry, TResult?> valueFactory, int expireSeconds);
@@ -12,10 +13,12 @@ public interface IMemoryCacheHelper
 public class MemoryCacheHelper : IMemoryCacheHelper
 {
     private readonly IMemoryCache memoryCache;
+    private readonly ICacheValueTypeValidator cacheValueTypeValidator;
+    private readonly IExpirationRandom expirationRandom;
 
     public TResult? GetOrCreate<TResult>(string cacheKey, Func<ICacheEntry, TResult?> valueFactory, int expireSeconds = 60)
     {
-        validateValueType<TResult>();
+        cacheValueTypeValidator.ValidateValueType<TResult>();
         return memoryCache.GetOrCreate(cacheKey, (e) =>
         {
             InitCacheEntry(e, expireSeconds);
@@ -25,7 +28,7 @@ public class MemoryCacheHelper : IMemoryCacheHelper
 
     public async Task<TResult?> GetOrCreateAsync<TResult>(string cacheKey, Func<ICacheEntry, Task<TResult?>> valueFactory, int expireSeconds = 60)
     {
-        validateValueType<TResult>();
+        cacheValueTypeValidator.ValidateValueType<TResult>();
         return await memoryCache.GetOrCreateAsync(cacheKey, async (e) =>
         {
             InitCacheEntry(e, expireSeconds);
@@ -38,32 +41,18 @@ public class MemoryCacheHelper : IMemoryCacheHelper
         memoryCache.Remove(cacheKey);
     }
 
-    public MemoryCacheHelper(IMemoryCache memoryCache)
+    public MemoryCacheHelper(IMemoryCache memoryCache,
+    IExpirationRandom expirationRandom,
+    ICacheValueTypeValidator cacheValueTypeValidator)
     {
+        this.expirationRandom = expirationRandom;
         this.memoryCache = memoryCache;
+        this.cacheValueTypeValidator = cacheValueTypeValidator;
     }
 
-    private static void validateValueType<TResult>()
+    private void InitCacheEntry(ICacheEntry entry, int baseExpirationSeconds)
     {
-        var typeResult = typeof(TResult);
-        if (typeResult.IsGenericType)
-        {
-            typeResult = typeResult.GetGenericTypeDefinition();
-        }
-        if (typeResult == typeof(IEnumerable)
-        || typeResult == typeof(IEnumerable<>)
-        || typeResult == typeof(IAsyncEnumerable<TResult>)
-        || typeResult == typeof(IQueryable<TResult>)
-        || typeResult == typeof(IQueryable))
-        {
-            throw new InvalidOperationException($"TResult of {typeResult} is not allowed, please use List<T> or T[] instead.");
-        }
-    }
-
-    private static void InitCacheEntry(ICacheEntry entry, int baseExpirationSeconds)
-    {
-        double sec = Random.Shared.Next(baseExpirationSeconds, baseExpirationSeconds * 2);
-        var expiration = TimeSpan.FromSeconds(sec);
+        var expiration = expirationRandom.Next(baseExpirationSeconds);
         entry.AbsoluteExpirationRelativeToNow = expiration;
     }
 }
