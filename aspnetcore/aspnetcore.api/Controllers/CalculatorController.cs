@@ -134,7 +134,7 @@ public class CalculatorController : ControllerBase
         {
             logger.LogInformation("Get from db and cache.");
             return await MyDbContext.GetByIdAsync(id);
-        }, 10);
+        }, 60);
 
 
         if (result == null)
