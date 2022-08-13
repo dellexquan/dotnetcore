@@ -147,4 +147,9 @@ public class CalculatorController : ControllerBase
             return result;
         }
     }
+    [HttpGet]
+    public string? GetEnvironmentVariable(string key)
+    {
+        return Environment.GetEnvironmentVariable(key);
+    }
 }
