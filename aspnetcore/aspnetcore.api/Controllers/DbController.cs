@@ -19,6 +19,11 @@ public class DbController : ControllerBase
     {
         return apiDbContext.Books.Count();
     }
+    [HttpGet]
+    public async Task<Book?> GetBookById(long Id)
+    {
+        return await apiDbContext.Books.FindAsync(Id);
+    }
     [HttpPost]
     public async Task<Book> NewBookAsync(Book book)
     {
