@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\aspnetcore.class\aspnetcore.class.csproj" />
+    <ProjectReference Include="..\aspnetcore.efcore\aspnetcore.efcore.csproj" />
   </ItemGroup>
 
 </Project>

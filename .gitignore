@@ -454,3 +454,6 @@ $RECYCLE.BIN/
 !.vscode/launch.json
 !.vscode/extensions.json
 aspnetcore/aspnetcore.api/dump.rdb
+aspnetcore/aspnetcore.api/api.db
+aspnetcore/aspnetcore.api/api.db-shm
+aspnetcore/aspnetcore.api/api.db-wal

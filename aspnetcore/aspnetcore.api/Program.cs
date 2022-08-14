@@ -1,5 +1,7 @@
 using aspnetcore.api;
 using aspnetcore.cache;
+using aspnetcore.efcore;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +33,12 @@ builder.Services.AddOptions()
 var smtpSettings = new SmtpSettings();
 builder.Configuration.GetSection("Smtp").Bind(smtpSettings);
 System.Console.WriteLine(smtpSettings);
+
+builder.Services.AddDbContext<ApiDbContext>(opt =>
+{
+    var connStr = builder.Configuration.GetSection("ConnectionStrings").GetValue<string>("Default");
+    opt.UseSqlite(connStr);
+});
 
 string[] urls = new[] { "http://localhost:8080" };
 builder.Services.AddCors(options =>
