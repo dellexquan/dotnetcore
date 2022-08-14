@@ -16,6 +16,7 @@ public class CalculatorController : ControllerBase
     private readonly IMemoryCache memoryCache;
     private readonly IMemoryCacheHelper memoryCacheHelper;
     private readonly IWebHostEnvironment webHostEnvironment;
+    private readonly IConfiguration configuration;
     private readonly ILogger<CalculatorController> logger;
 
     public CalculatorController(ICalculator calculator,
@@ -24,6 +25,7 @@ public class CalculatorController : ControllerBase
     IMemoryCache memoryCache,
     IMemoryCacheHelper memoryCacheHelper,
     IWebHostEnvironment webHostEnvironment,
+    IConfiguration configuration,
     ILogger<CalculatorController> logger)
     {
         this.calculator = calculator;
@@ -32,6 +34,7 @@ public class CalculatorController : ControllerBase
         this.memoryCache = memoryCache;
         this.memoryCacheHelper = memoryCacheHelper;
         this.webHostEnvironment = webHostEnvironment;
+        this.configuration = configuration;
         this.logger = logger;
     }
 
@@ -159,5 +162,12 @@ public class CalculatorController : ControllerBase
     public string GetEnvironmentName()
     {
         return webHostEnvironment.EnvironmentName;
+    }
+    [HttpGet]
+    public string GetRedisConfig()
+    {
+        var redis_host = configuration.GetSection("Redis").GetValue<string>("Host");
+        var redis_instance_name = configuration.GetSection("Redis").GetValue<string>("InstanceName");
+        return $"redis_host: {redis_host} | redis_instance_name: {redis_instance_name}";
     }
 }

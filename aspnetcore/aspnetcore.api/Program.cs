@@ -14,11 +14,15 @@ builder.Services.AddScoped<ICalculator, Calculator>();
 //add cache helper
 builder.Services.AddCacheHelper();
 
+var redis_host = builder.Configuration.GetSection("Redis").GetValue<string>("Host");
+var redis_instance_name = builder.Configuration.GetSection("Redis").GetValue<string>("InstanceName");
+System.Console.WriteLine($"redis_host: {redis_host}");
+System.Console.WriteLine($"redis_instance_name: {redis_instance_name}");
 //config redis
 builder.Services.AddStackExchangeRedisCache(opitons =>
 {
-    opitons.Configuration = "localhost";
-    opitons.InstanceName = "aspnetcore_";
+    opitons.Configuration = redis_host;
+    opitons.InstanceName = redis_instance_name;
 });
 
 string[] urls = new[] { "http://localhost:8080" };
