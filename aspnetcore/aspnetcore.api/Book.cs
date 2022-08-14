@@ -1,3 +1,3 @@
 namespace aspnetcore.api;
 
-public record Book(long Id, string Name);
+public record SimpleBook(long Id, string Name);

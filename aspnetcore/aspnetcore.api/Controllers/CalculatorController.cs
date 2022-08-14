@@ -55,7 +55,7 @@ public class CalculatorController : ControllerBase
     }
 
     [HttpGet()]
-    public async Task<ActionResult<Book?>> GetBookById(int id)
+    public async Task<ActionResult<SimpleBook?>> GetBookById(int id)
     {
         //var result = MyDbContext.GetById(id);
 
@@ -88,9 +88,9 @@ public class CalculatorController : ControllerBase
         }
     }
     [HttpGet()]
-    public async Task<ActionResult<Book?>> TestMemoryCacheHelper(int id)
+    public async Task<ActionResult<SimpleBook?>> TestMemoryCacheHelper(int id)
     {
-        var result = await memoryCacheHelper.GetOrCreateAsync<Book?>($"MemoryBook-{id}", async (e) =>
+        var result = await memoryCacheHelper.GetOrCreateAsync<SimpleBook?>($"MemoryBook-{id}", async (e) =>
         {
             logger.LogInformation("Get from db and cache.");
             return await MyDbContext.GetByIdAsync(id);
@@ -109,9 +109,9 @@ public class CalculatorController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<Book?>> TestRedisCache(int id)
+    public async Task<ActionResult<SimpleBook?>> TestRedisCache(int id)
     {
-        Book? result;
+        SimpleBook? result;
         var key = $"book-{id}";
         var strBook = await distributedCache.GetStringAsync(key);
         if (string.IsNullOrEmpty(strBook))
@@ -125,7 +125,7 @@ public class CalculatorController : ControllerBase
         else
         {
             logger.LogInformation("Get from cache.");
-            result = JsonSerializer.Deserialize<Book?>(strBook);
+            result = JsonSerializer.Deserialize<SimpleBook?>(strBook);
         }
         if (result == null)
         {
@@ -138,9 +138,9 @@ public class CalculatorController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<Book?>> TestDistributedCacheHelper(int id)
+    public async Task<ActionResult<SimpleBook?>> TestDistributedCacheHelper(int id)
     {
-        var result = await distributedCacheHelper.GetOrCreateAsync<Book?>($"DistributedBook-{id}", async () =>
+        var result = await distributedCacheHelper.GetOrCreateAsync<SimpleBook?>($"DistributedBook-{id}", async () =>
         {
             logger.LogInformation("Get from db and cache.");
             return await MyDbContext.GetByIdAsync(id);
