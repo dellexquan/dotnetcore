@@ -24,6 +24,13 @@ builder.Services.AddStackExchangeRedisCache(opitons =>
     opitons.Configuration = redis_host;
     opitons.InstanceName = redis_instance_name;
 });
+//register smtp settings as options
+builder.Services.AddOptions()
+        .Configure<SmtpSettings>(e => builder.Configuration.GetSection("Smtp").Bind(e));
+//bind smtp section to smtp settings
+var smtpSettings = new SmtpSettings();
+builder.Configuration.GetSection("Smtp").Bind(smtpSettings);
+System.Console.WriteLine(smtpSettings);
 
 string[] urls = new[] { "http://localhost:8080" };
 builder.Services.AddCors(options =>

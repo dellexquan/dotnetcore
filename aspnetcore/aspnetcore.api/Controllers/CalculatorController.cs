@@ -2,6 +2,7 @@ using aspnetcore.cache;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Options;
 using System.Text.Json;
 
 namespace aspnetcore.api.Controllers;
@@ -17,6 +18,7 @@ public class CalculatorController : ControllerBase
     private readonly IMemoryCacheHelper memoryCacheHelper;
     private readonly IWebHostEnvironment webHostEnvironment;
     private readonly IConfiguration configuration;
+    private readonly IOptionsSnapshot<SmtpSettings> smtpSettingsOptions;
     private readonly ILogger<CalculatorController> logger;
 
     public CalculatorController(ICalculator calculator,
@@ -26,6 +28,7 @@ public class CalculatorController : ControllerBase
     IMemoryCacheHelper memoryCacheHelper,
     IWebHostEnvironment webHostEnvironment,
     IConfiguration configuration,
+    IOptionsSnapshot<SmtpSettings> smtpSettingsOptions,
     ILogger<CalculatorController> logger)
     {
         this.calculator = calculator;
@@ -35,6 +38,7 @@ public class CalculatorController : ControllerBase
         this.memoryCacheHelper = memoryCacheHelper;
         this.webHostEnvironment = webHostEnvironment;
         this.configuration = configuration;
+        this.smtpSettingsOptions = smtpSettingsOptions;
         this.logger = logger;
     }
 
@@ -169,5 +173,10 @@ public class CalculatorController : ControllerBase
         var redis_host = configuration.GetSection("Redis").GetValue<string>("Host");
         var redis_instance_name = configuration.GetSection("Redis").GetValue<string>("InstanceName");
         return $"redis_host: {redis_host} | redis_instance_name: {redis_instance_name}";
+    }
+    [HttpGet]
+    public string GetSmtpSettings()
+    {
+        return smtpSettingsOptions.Value.ToString();
     }
 }
