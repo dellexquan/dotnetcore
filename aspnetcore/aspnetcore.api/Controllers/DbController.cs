@@ -20,7 +20,7 @@ public class DbController : ControllerBase
         return apiDbContext.Books.Count();
     }
     [HttpPost]
-    public async Task<aspnetcore.efcore.Book> NewBookAsync(aspnetcore.efcore.Book book)
+    public async Task<Book> NewBookAsync(Book book)
     {
         apiDbContext.Books.Add(book);
         await apiDbContext.SaveChangesAsync();
