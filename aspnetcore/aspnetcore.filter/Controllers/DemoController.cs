@@ -11,4 +11,10 @@ public class DemoController : ControllerBase
     {
         return System.IO.File.ReadAllText("ccc.txt");
     }
+
+    [HttpGet]
+    public string Test2()
+    {
+        return "Success";
+    }
 }

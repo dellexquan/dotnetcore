@@ -13,6 +13,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.Configure<MvcOptions>(
     opt =>
     {
+        opt.Filters.Add<MyActionFilter>();
         opt.Filters.Add<MyExceptionFilter>();
         opt.Filters.Add<LogExceptionFilter>();
     }
