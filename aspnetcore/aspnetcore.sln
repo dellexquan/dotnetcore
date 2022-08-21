@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aspnetcore.class", "aspnetc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aspnetcore.efcore", "aspnetcore.efcore\aspnetcore.efcore.csproj", "{81124A24-5A5F-4EC2-AD46-5DECF8C2B92B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aspnetcore.filter", "aspnetcore.filter\aspnetcore.filter.csproj", "{8D02019E-1C3F-46AC-9249-29E8CAF44761}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{81124A24-5A5F-4EC2-AD46-5DECF8C2B92B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81124A24-5A5F-4EC2-AD46-5DECF8C2B92B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81124A24-5A5F-4EC2-AD46-5DECF8C2B92B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D02019E-1C3F-46AC-9249-29E8CAF44761}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D02019E-1C3F-46AC-9249-29E8CAF44761}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D02019E-1C3F-46AC-9249-29E8CAF44761}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D02019E-1C3F-46AC-9249-29E8CAF44761}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
