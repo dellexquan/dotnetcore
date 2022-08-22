@@ -1,3 +1,4 @@
+using System.Transactions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace aspnetcore.filter.Controllers;
@@ -27,6 +28,23 @@ public class DemoController : ControllerBase
     [HttpPost]
     public string Test3()
     {
+        //sqlite not support transaction
+        // using (var ts = new TransactionScope())
+        // {
+        //     ctx.Books.Add(new Book
+        //     {
+        //         Name = "Book1",
+        //         Price = 1.0d
+        //     });
+        //     ctx.Persons.Add(new Person
+        //     {
+        //         Name = "Dellex",
+        //         Age = 18
+        //     });
+        //     ctx.SaveChanges();
+        //     ts.Complete();
+        // }
+
         ctx.Books.Add(new Book
         {
             Name = "Book1",
