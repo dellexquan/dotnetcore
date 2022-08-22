@@ -1,5 +1,6 @@
 using aspnetcore.filter;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,12 @@ builder.Services.Configure<MvcOptions>(
         opt.Filters.Add<LogExceptionFilter>();
     }
 );
+
+builder.Services.AddDbContext<MyDbContext>(opt =>
+{
+    var connStr = builder.Configuration.GetSection("ConnectionStrings").GetValue<string>("Default");
+    opt.UseSqlite(connStr);
+});
 
 var app = builder.Build();
 

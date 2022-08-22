@@ -6,6 +6,12 @@ namespace aspnetcore.filter.Controllers;
 [Route("api/[controller]/[action]")]
 public class DemoController : ControllerBase
 {
+    private readonly MyDbContext ctx;
+    public DemoController(MyDbContext ctx)
+    {
+        this.ctx = ctx;
+    }
+
     [HttpGet]
     public string Test1()
     {
@@ -15,6 +21,24 @@ public class DemoController : ControllerBase
     [HttpGet]
     public string Test2()
     {
+        return "Success";
+    }
+
+    [HttpPost]
+    public string Test3()
+    {
+        ctx.Books.Add(new Book
+        {
+            Name = "Book1",
+            Price = 1.0d
+        });
+        ctx.Persons.Add(new Person
+        {
+            Name = "Dellex",
+            Age = 18
+        });
+        ctx.SaveChanges();
+
         return "Success";
     }
 }
