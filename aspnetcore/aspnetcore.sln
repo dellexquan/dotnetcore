@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aspnetcore.efcore", "aspnet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aspnetcore.filter", "aspnetcore.filter\aspnetcore.filter.csproj", "{8D02019E-1C3F-46AC-9249-29E8CAF44761}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aspnetcore.web", "aspnetcore.web\aspnetcore.web.csproj", "{3518E731-D9FD-4311-883C-511079AE106C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{8D02019E-1C3F-46AC-9249-29E8CAF44761}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D02019E-1C3F-46AC-9249-29E8CAF44761}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D02019E-1C3F-46AC-9249-29E8CAF44761}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3518E731-D9FD-4311-883C-511079AE106C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3518E731-D9FD-4311-883C-511079AE106C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3518E731-D9FD-4311-883C-511079AE106C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3518E731-D9FD-4311-883C-511079AE106C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
