@@ -17,6 +17,7 @@ builder.Services.Configure<MvcOptions>(
         opt.Filters.Add<MyActionFilter>();
         opt.Filters.Add<MyExceptionFilter>();
         opt.Filters.Add<LogExceptionFilter>();
+        opt.Filters.Add<TransactionScopeFilter>();
     }
 );
 
