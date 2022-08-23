@@ -1,10 +1,12 @@
 using aspnetcore.filter;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddSingleton<IMemoryCache, MemoryCache>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -18,6 +20,7 @@ builder.Services.Configure<MvcOptions>(
         opt.Filters.Add<MyExceptionFilter>();
         opt.Filters.Add<LogExceptionFilter>();
         opt.Filters.Add<TransactionScopeFilter>();
+        opt.Filters.Add<RateLimitFilter>();
     }
 );
 

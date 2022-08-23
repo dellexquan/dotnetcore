@@ -11,7 +11,7 @@ public class MyExceptionFilter : IAsyncExceptionFilter
     {
         this.hostEnv = hostEnv;
     }
-    public async Task OnExceptionAsync(ExceptionContext context)
+    public Task OnExceptionAsync(ExceptionContext context)
     {
         var msg = "";
         if (hostEnv.IsDevelopment())
@@ -26,5 +26,7 @@ public class MyExceptionFilter : IAsyncExceptionFilter
         var objResult = new ObjectResult(new { code = 500, message = msg });
         context.Result = objResult;
         context.ExceptionHandled = true;
+
+        return Task.CompletedTask;
     }
 }
