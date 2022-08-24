@@ -1,3 +1,5 @@
+using aspnetcore.web;
+
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -17,6 +19,7 @@ app.Map("/test", appbuilder =>
         await next.Invoke();
         await context.Response.WriteAsync("2 End<br/>");
     });
+    appbuilder.UseMiddleware<TestMiddleware>();
     appbuilder.Run(async ctx =>
     {
         await ctx.Response.WriteAsync("Hello middleware <br/>");
