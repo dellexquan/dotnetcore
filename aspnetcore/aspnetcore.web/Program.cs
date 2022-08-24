@@ -6,6 +6,7 @@ var app = builder.Build();
 //app.MapGet("/", () => "Hello World!");
 app.Map("/test", appbuilder =>
 {
+    appbuilder.UseMiddleware<CheckAndParsingMiddleware>();
     appbuilder.Use(async (context, next) =>
     {
         context.Response.ContentType = "text/html";
@@ -23,6 +24,11 @@ app.Map("/test", appbuilder =>
     appbuilder.Run(async ctx =>
     {
         await ctx.Response.WriteAsync("Hello middleware <br/>");
+        var obj = ctx.Items["BodyJson"];
+        if (obj != null)
+        {
+            await ctx.Response.WriteAsync($"{obj}<br/>");
+        }
     });
 });
 
