@@ -1,3 +1,5 @@
+using aspnetcore.mvc;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -14,6 +16,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseMiddleware<MarkdownMiddleware>();
 app.UseStaticFiles();
 
 app.UseRouting();
