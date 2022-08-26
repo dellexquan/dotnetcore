@@ -32,7 +32,7 @@ public class MarkdownMiddleware
             return;
         }
         var mdText = await GetMarkdownTextAsync(file);
-        var html = MarkDownToHtml(mdText);
+        var html = MarkdownToHtml(mdText);
         context.Response.ContentType = "text/html; charset=UTF-8";
         await context.Response.WriteAsync(html);
     }
@@ -45,7 +45,7 @@ public class MarkdownMiddleware
         return await reader.ReadToEndAsync();
     }
 
-    private string MarkDownToHtml(string markdownText)
+    private string MarkdownToHtml(string markdownText)
     {
         var markdown = new Markdown();
         return markdown.Transform(markdownText);
