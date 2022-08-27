@@ -41,4 +41,57 @@ public class DemoController : ControllerBase
 
         return "ok";
     }
+
+    [HttpPost]
+    public async Task<ActionResult> CheckPwd(CheckPwdRequest req)
+    {
+        var userName = req.UserName;
+        var pwd = req.Password;
+        var user = await userManager.FindByNameAsync(userName);
+        if (user == null) return NotFound($"User not existed.");
+        var isLock = await userManager.IsLockedOutAsync(user);
+        if (isLock) return BadRequest("User is locked.");
+        var isValid = await userManager.CheckPasswordAsync(user, pwd);
+        if (isValid)
+        {
+            await userManager.ResetAccessFailedCountAsync(user);
+            return Ok("Login success.");
+        }
+        else
+        {
+            await userManager.AccessFailedAsync(user);
+            return BadRequest("User name or password is incorrect!");
+        }
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> SendResetPasswordToken(string userName)
+    {
+        var user = await userManager.FindByNameAsync(userName);
+        if (user == null) return NotFound($"User not existed.");
+        var token = await userManager.GeneratePasswordResetTokenAsync(user);
+        System.Console.WriteLine($"token is {token}");
+        return Ok();
+    }
+
+    [HttpPut]
+    public async Task<ActionResult> ResetPassword(string userName, string token, string newPassword)
+    {
+        var user = await userManager.FindByNameAsync(userName);
+        if (user == null)
+        {
+            return NotFound("User not existed.");
+        }
+        var result = await userManager.ResetPasswordAsync(user, token, newPassword);
+        if (result.Succeeded)
+        {
+            await userManager.ResetAccessFailedCountAsync(user);
+            return Ok("Password reset success.");
+        }
+        else
+        {
+            await userManager.AccessFailedAsync(user);
+            return BadRequest("Reset password failed.");
+        }
+    }
 }
