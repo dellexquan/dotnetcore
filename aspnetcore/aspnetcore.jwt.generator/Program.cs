@@ -13,7 +13,7 @@ System.Console.WriteLine(head);
 System.Console.WriteLine("--payload--");
 System.Console.WriteLine(payload);
 
-var claimsPrincipal = ValidateJwt(jwt);
+var claimsPrincipal = ValidateJwt(jwt, GetKey());
 System.Console.WriteLine("--validate signature--");
 foreach (var claim in claimsPrincipal.Claims)
 {
@@ -25,9 +25,14 @@ static string GetKey()
     return "fasdfa#123214324&adsfkjdsfk@02302";
 }
 
-static ClaimsPrincipal ValidateJwt(string jwt)
+static string GetFakeKey()
 {
-    var secKey = GetKey();
+    return "qwwewer#123214324&adsfkjdsfk@02302";
+}
+
+
+static ClaimsPrincipal ValidateJwt(string jwt, string secKey)
+{
     var tokenHandler = new JwtSecurityTokenHandler();
     var valParam = new TokenValidationParameters();
     var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secKey));
