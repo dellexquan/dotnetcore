@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aspnetcore.identity", "aspn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aspnetcore.jwt.generator", "aspnetcore.jwt.generator\aspnetcore.jwt.generator.csproj", "{8F49D5EE-3D0B-459C-B766-2E1FC7BEA379}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aspnetcore.jwt", "aspnetcore.jwt\aspnetcore.jwt.csproj", "{8E81870E-FC72-4AB2-825A-DF058AECC87E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,5 +62,9 @@ Global
 		{8F49D5EE-3D0B-459C-B766-2E1FC7BEA379}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F49D5EE-3D0B-459C-B766-2E1FC7BEA379}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F49D5EE-3D0B-459C-B766-2E1FC7BEA379}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E81870E-FC72-4AB2-825A-DF058AECC87E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E81870E-FC72-4AB2-825A-DF058AECC87E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E81870E-FC72-4AB2-825A-DF058AECC87E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E81870E-FC72-4AB2-825A-DF058AECC87E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
