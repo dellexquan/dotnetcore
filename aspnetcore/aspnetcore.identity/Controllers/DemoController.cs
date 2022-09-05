@@ -1,3 +1,4 @@
+using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,11 +10,26 @@ public class DemoController : ControllerBase
 {
     private readonly UserManager<MyUser> userManager;
     private readonly RoleManager<MyRole> roleManager;
+    //private readonly IValidator<AddNewUserRequest> addNewRequestValidator;
 
     public DemoController(UserManager<MyUser> userManager, RoleManager<MyRole> roleManager)
     {
         this.userManager = userManager;
         this.roleManager = roleManager;
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> AddNew(AddNewUserRequest req)
+    {
+        var user = new MyUser
+        {
+            UserName = req.UserName,
+            Email = req.Email
+        };
+
+        await userManager.CreateAsync(user, req.Password);
+
+        return Ok();
     }
 
     [HttpPost]

@@ -1,10 +1,18 @@
+using System.Reflection;
 using aspnetcore.identity;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddFluentValidation(opt =>
+{
+    opt.RegisterValidatorsFromAssembly(Assembly.GetEntryAssembly());
+});
+
 builder.Services.AddDbContext<MyDbContext>(
     opt =>
     {
