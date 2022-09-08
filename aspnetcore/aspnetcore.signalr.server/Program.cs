@@ -12,7 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 //cors
-string[] urls = new[] { "http://localhost:8080" };
+string[] urls = new[] { "http://localhost:5173" };
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(
@@ -32,14 +32,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseHttpsRedirection();
 //cors
 app.UseCors();
 
+app.UseHttpsRedirection();
+
 app.UseAuthorization();
 //signalr
-app.MapHub<ChatRoomHub>("/hubs/chatroomht");
+app.MapHub<ChatRoomHub>("/hubs/chatroomhub");
 
 app.MapControllers();
 
