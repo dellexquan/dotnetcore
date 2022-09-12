@@ -5,15 +5,17 @@
   export default {
     name: 'Login',
     setup() {
-      const state = reactive({userMessage: '', messages: []})
+      const state = reactive({userMessage: '',  messages: []})
       const txtMsgOnKeypress = async function(e) {
         if(e.keyCode != 13) return
         await connection.invoke("SendPublicMessage", state.userMessage);
         state.userMessage = ''
       }
       onMounted(async function() {
+        const options = { skipNegotiation: true, transport: signalR.HttpTransportType.WebSockets}
         connection = new signalR.HubConnectionBuilder()
-          .withUrl('https://localhost:7076/hubs/chatroomhub')
+          //.withUrl('https://localhost:7076/hubs/chatroomhub')
+          .withUrl('https://localhost:7076/hubs/chatroomhub', options)
           .withAutomaticReconnect()
           .build();
         await connection.start()
