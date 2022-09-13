@@ -5,7 +5,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 //signalr
-builder.Services.AddSignalR();
+//for single version
+//builder.Services.AddSignalR()
+//for cluster version
+builder.Services.AddSignalR().AddStackExchangeRedis("127.0.0.1", options =>
+{
+    options.Configuration.ChannelPrefix = "Test1_";
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
