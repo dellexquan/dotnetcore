@@ -6,11 +6,11 @@
   export default {
     name: 'Login',
     setup() {
-      const state = reactive({username: '', password: '', userMessage: '',  messages: []})
+      const state = reactive({username: '', password: '', toUserName: '', privateMessage: '', userMessage: '',  messages: []})
       const login = async function() {
         const credential = {
-          userName: 'dellex',
-          password: '123456'
+          userName: state.username,
+          password: state.password
         }
         axios.post('https://localhost:7076/api/demo/login2', credential)
         .then(async res=>{
@@ -26,6 +26,11 @@
         await connection.invoke("SendPublicMessage", state.userMessage);
         state.userMessage = ''
       }
+      const txtPrivateMsgOnKeyPress = async function(e) {
+        if(e.keyCode != 13) return
+        await connection.invoke("SendPrivateMessage", state.toUserName, state.privateMessage)
+        state.privateMessage = ''
+      }
 
       const connectSignalR = async function(token) {
         console.log(token)
@@ -40,20 +45,33 @@
         connection.on('ReceivePublicMessage', msg => {
           state.messages.push(msg)
         })
+        connection.on('ReceivePrivateMessage', (from, msg) => {
+          state.messages.push(from + ': ' + msg)
+        })
       }
 
       onMounted(async function() {
         
       })
 
-      return {state, login, txtMsgOnKeypress, connectSignalR}
+      return {state, login, txtMsgOnKeypress, txtPrivateMsgOnKeyPress, connectSignalR}
     }
   }
 </script>
 
 <template>
   <div>
-    <input type="text" v-model="state.userMessage" v-on:keypress="txtMsgOnKeypress"/>
+    <div>
+      Public: <br>
+      Message: <input type="text" v-model="state.userMessage" v-on:keypress="txtMsgOnKeypress"/>
+    </div>
+    <div>
+      Private: <br>
+      To User Name: 
+      <input type="text" v-model="state.toUserName" /><br>
+      Message: <br>
+      <input type="text" v-model="state.privateMessage" v-on:keypress="txtPrivateMsgOnKeyPress" />
+    </div>
     <div>
       <div>
         User Name: <input type="text" v-model="state.username" />
