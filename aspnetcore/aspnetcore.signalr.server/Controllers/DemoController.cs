@@ -5,6 +5,7 @@ using aspnetcore.identity;
 using aspnetcore.jwt;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
@@ -18,15 +19,34 @@ public class DemoController : ControllerBase
     private readonly IOptionsSnapshot<JWTSettings> jwtSettingsOption;
     private readonly UserManager<MyUser> userManager;
     private readonly RoleManager<MyRole> roleManager;
+    private readonly IHubContext<ChatRoomHub> hubContext;
 
     public DemoController(
         IOptionsSnapshot<JWTSettings> jwtSettingsOption,
         UserManager<MyUser> userManager,
-        RoleManager<MyRole> roleManager)
+        RoleManager<MyRole> roleManager,
+        IHubContext<ChatRoomHub> hubContext)
     {
         this.jwtSettingsOption = jwtSettingsOption;
         this.userManager = userManager;
         this.roleManager = roleManager;
+        this.hubContext = hubContext;
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> AddUser(string userName, string password)
+    {
+        var user = await userManager.FindByNameAsync(userName);
+        if (user == null)
+        {
+            user = new MyUser { UserName = userName };
+            var result = await userManager.CreateAsync(user, password);
+            if (!result.Succeeded) return BadRequest("Create user failed.");
+            await hubContext.Clients.All.SendAsync("ReceivePublicMessage", $"Welcome new user {userName}!");
+            return Ok();
+        }
+
+        return BadRequest("User name existed!");
     }
 
     [HttpPost]
