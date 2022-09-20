@@ -9,7 +9,13 @@
 // ctx.SaveChanges();
 // System.Console.WriteLine("Person saved.");
 
-using var ctx = new MyDbContext();
-var person = ctx.Persons.First();
-System.Console.WriteLine(person.Id);
+// using var ctx = new MyDbContext();
+// var person = ctx.Persons.First();
+// System.Console.WriteLine(person.Id);
 
+using var ctx = new MyDbContext();
+var user = new User("dellex");
+user.ChangePassword("123456");
+ctx.Users.Add(user);
+ctx.SaveChanges();
+System.Console.WriteLine("Save user completed!");
