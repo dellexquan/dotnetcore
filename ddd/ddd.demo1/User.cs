@@ -6,6 +6,8 @@ public class User
     public int Credit { get; private set; }
     private string? passwordHash;
 
+    public Gender? Gender { get; set; }
+
     private string? remark;
     public string? Remark
     {
@@ -16,12 +18,13 @@ public class User
     }
     public string? Tag { get; set; }
 
-    public User(string userName)
+    public User(string userName, Gender gender)
     {
         this.Id = new Guid();
         this.UserName = userName;
         this.CreateDateTime = DateTime.Now;
         this.Credit = 10;
+        this.Gender = gender;
     }
 
     private User()
@@ -48,4 +51,10 @@ public class User
         }
         this.passwordHash = HashHelper.GetMD5Hash(password);
     }
+}
+
+public enum Gender
+{
+    Male,
+    Female
 }

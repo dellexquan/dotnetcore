@@ -8,5 +8,6 @@ public class UserConfig : IEntityTypeConfiguration<User>
         builder.Property("passwordHash");
         builder.Property(u => u.Remark).HasField("remark");
         builder.Ignore(u => u.Tag);
+        builder.Property(u => u.Gender).HasConversion<string>();
     }
 }
