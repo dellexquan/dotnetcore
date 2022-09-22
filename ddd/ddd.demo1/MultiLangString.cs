@@ -1,0 +1,1 @@
+public record MultiLangString(string? Chinese, string? English);

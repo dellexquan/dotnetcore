@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,23 +10,13 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ddd.demo1.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220921234435_add_shop")]
+    partial class add_shop
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.9");
-
-            modelBuilder.Entity("Blog", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Blogs");
-                });
 
             modelBuilder.Entity("Person", b =>
                 {
@@ -54,7 +45,7 @@ namespace ddd.demo1.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Shops", (string)null);
+                    b.ToTable("Shop");
                 });
 
             modelBuilder.Entity("User", b =>
@@ -87,61 +78,6 @@ namespace ddd.demo1.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Blog", b =>
-                {
-                    b.OwnsOne("MultiLangString", "Body", b1 =>
-                        {
-                            b1.Property<int>("BlogId")
-                                .HasColumnType("INTEGER");
-
-                            b1.Property<string>("Chinese")
-                                .HasMaxLength(255)
-                                .IsUnicode(true)
-                                .HasColumnType("TEXT");
-
-                            b1.Property<string>("English")
-                                .HasMaxLength(255)
-                                .IsUnicode(false)
-                                .HasColumnType("TEXT");
-
-                            b1.HasKey("BlogId");
-
-                            b1.ToTable("Blogs");
-
-                            b1.WithOwner()
-                                .HasForeignKey("BlogId");
-                        });
-
-                    b.OwnsOne("MultiLangString", "Title", b1 =>
-                        {
-                            b1.Property<int>("BlogId")
-                                .HasColumnType("INTEGER");
-
-                            b1.Property<string>("Chinese")
-                                .HasMaxLength(255)
-                                .IsUnicode(true)
-                                .HasColumnType("TEXT");
-
-                            b1.Property<string>("English")
-                                .HasMaxLength(255)
-                                .IsUnicode(false)
-                                .HasColumnType("TEXT");
-
-                            b1.HasKey("BlogId");
-
-                            b1.ToTable("Blogs");
-
-                            b1.WithOwner()
-                                .HasForeignKey("BlogId");
-                        });
-
-                    b.Navigation("Body")
-                        .IsRequired();
-
-                    b.Navigation("Title")
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Shop", b =>
                 {
                     b.OwnsOne("Geo", "Location", b1 =>
@@ -157,7 +93,7 @@ namespace ddd.demo1.Migrations
 
                             b1.HasKey("ShopId");
 
-                            b1.ToTable("Shops");
+                            b1.ToTable("Shop");
 
                             b1.WithOwner()
                                 .HasForeignKey("ShopId");

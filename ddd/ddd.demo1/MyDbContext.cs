@@ -4,6 +4,8 @@ public class MyDbContext : DbContext
 {
     public DbSet<Person> Persons { get; set; } = null!;
     public DbSet<User> Users { get; set; } = null!;
+    public DbSet<Shop> Shops { get; set; } = null!;
+    public DbSet<Blog> Blogs { get; set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
