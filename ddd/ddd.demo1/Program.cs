@@ -32,10 +32,30 @@
 // ctx.SaveChanges();
 // System.Console.WriteLine("Shop save completed!");
 
+// using var ctx = new MyDbContext();
+// foreach (var shop in ctx.Shops)
+// {
+//     System.Console.WriteLine(shop.Id);
+//     System.Console.WriteLine(shop.Name);
+//     System.Console.WriteLine(shop.Location);
+// }
+
 using var ctx = new MyDbContext();
-foreach (var shop in ctx.Shops)
-{
-    System.Console.WriteLine(shop.Id);
-    System.Console.WriteLine(shop.Name);
-    System.Console.WriteLine(shop.Location);
-}
+// var blog = new Blog
+// {
+//     Title = new MultiLangString("你好", "Hello"),
+//     Body = new MultiLangString("fffff", "xxxxxx")
+// };
+// var blog = new Blog
+// {
+//     Title = new MultiLangString("再见", "Bye"),
+//     Body = new MultiLangString("abc", "efg")
+// };
+// ctx.Blogs.Add(blog);
+// ctx.SaveChanges();
+// foreach (var blog in ctx.Blogs)
+// {
+//     System.Console.WriteLine(blog);
+// }
+var blog = ctx.Blogs.First(b => b.Title.Chinese == "你好" && b.Title.English == "Hello");
+System.Console.WriteLine(blog);
