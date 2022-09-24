@@ -22,9 +22,17 @@ public class WeatherForecastController : ControllerBase
     }
 
     [HttpGet(Name = "GetWeatherForecast")]
-    public IEnumerable<WeatherForecast> Get()
+    public async Task<IEnumerable<WeatherForecast>> Get()
     {
-        mediator.Publish(new PostNotification("Hello! " + DateTime.Now));
+        await mediator.Publish(new PostNotification("Hello! " + DateTime.Now));
+
+        using var ctx = new MyDbContext(mediator);
+        var user = new User("Dellex", Gender.Male);
+        user.ChangePassword("123456");
+        user.ChangeUserName("abc");
+        ctx.Users.Add(user);
+        await ctx.SaveChangesAsync();
+
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
         {
             Date = DateTime.Now.AddDays(index),
