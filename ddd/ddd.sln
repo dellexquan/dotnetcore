@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ddd.demo1", "ddd.demo1\ddd.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ddd.mediatr", "ddd.mediatr\ddd.mediatr.csproj", "{F0B2DE48-5528-4F99-923A-970CEE1F958B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ddd.rabbitmq.sender", "ddd.rabbitmq.sender\ddd.rabbitmq.sender.csproj", "{383CF1A7-C280-45B6-99F8-82090960D76C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ddd.rabbitmq.receiver", "ddd.rabbitmq.receiver\ddd.rabbitmq.receiver.csproj", "{15258FAD-F32F-45A0-830C-F9C54D09A13E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{F0B2DE48-5528-4F99-923A-970CEE1F958B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0B2DE48-5528-4F99-923A-970CEE1F958B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0B2DE48-5528-4F99-923A-970CEE1F958B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{383CF1A7-C280-45B6-99F8-82090960D76C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{383CF1A7-C280-45B6-99F8-82090960D76C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{383CF1A7-C280-45B6-99F8-82090960D76C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{383CF1A7-C280-45B6-99F8-82090960D76C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15258FAD-F32F-45A0-830C-F9C54D09A13E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15258FAD-F32F-45A0-830C-F9C54D09A13E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15258FAD-F32F-45A0-830C-F9C54D09A13E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15258FAD-F32F-45A0-830C-F9C54D09A13E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
