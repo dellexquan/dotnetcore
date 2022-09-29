@@ -34,4 +34,8 @@ public record User : IAggregateRoot
         PhoneNumber = phoneNumber;
     }
 
+    public bool CheckPassword(string password)
+    {
+        return this.passwordHash == HashHelper.ComputeMd5Hash(password);
+    }
 }
