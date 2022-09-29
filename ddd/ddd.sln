@@ -11,6 +11,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ddd.rabbitmq.sender", "ddd.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ddd.rabbitmq.receiver", "ddd.rabbitmq.receiver\ddd.rabbitmq.receiver.csproj", "{15258FAD-F32F-45A0-830C-F9C54D09A13E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ddd.usermanager", "ddd.usermanager", "{16195FCC-0C2E-4706-88DF-33BF6F5C74BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ddd.usermanager.api", "ddd.usermanager\ddd.usermanager.api\ddd.usermanager.api.csproj", "{018635B7-FDDA-47E4-8A88-B91AB285E2A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ddd.usermanager.domain", "ddd.usermanager\ddd.usermanager.domain\ddd.usermanager.domain.csproj", "{454AD57B-120F-4A07-BC25-A27DD0F0DF17}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +42,17 @@ Global
 		{15258FAD-F32F-45A0-830C-F9C54D09A13E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15258FAD-F32F-45A0-830C-F9C54D09A13E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15258FAD-F32F-45A0-830C-F9C54D09A13E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{018635B7-FDDA-47E4-8A88-B91AB285E2A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{018635B7-FDDA-47E4-8A88-B91AB285E2A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{018635B7-FDDA-47E4-8A88-B91AB285E2A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{018635B7-FDDA-47E4-8A88-B91AB285E2A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{454AD57B-120F-4A07-BC25-A27DD0F0DF17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{454AD57B-120F-4A07-BC25-A27DD0F0DF17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{454AD57B-120F-4A07-BC25-A27DD0F0DF17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{454AD57B-120F-4A07-BC25-A27DD0F0DF17}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{018635B7-FDDA-47E4-8A88-B91AB285E2A8} = {16195FCC-0C2E-4706-88DF-33BF6F5C74BC}
+		{454AD57B-120F-4A07-BC25-A27DD0F0DF17} = {16195FCC-0C2E-4706-88DF-33BF6F5C74BC}
 	EndGlobalSection
 EndGlobal
