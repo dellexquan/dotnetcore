@@ -7,5 +7,6 @@ namespace ddd.usermanager.domain
         void AccessFail(User user);
         void ResetAccessFail(User user);
         Task PublishEventAsync(UserAccessResultEvent e);
+        Task<CheckCodeResult> CheckCodeAsync(PhoneNumber phoneNumber, string code);
     }
 }

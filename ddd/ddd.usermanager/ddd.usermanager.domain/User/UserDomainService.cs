@@ -63,4 +63,23 @@ public class UserDomainService : IUserDomainService
     {
         return user.AccessFail.IsLockOut();
     }
+
+    public async Task<CheckCodeResult> CheckCodeAsync(PhoneNumber phoneNumber, string code)
+    {
+        var user = await userRepository.FindOneAsync(phoneNumber);
+        if (user == null)
+            return CheckCodeResult.PhoneNumberNotFound;
+        if (IsLockout(user))
+            return CheckCodeResult.Lockout;
+        var codelnServer = await userRepository.RetrievePhoneCodeAsync(phoneNumber);
+        if (string.IsNullOrEmpty(codelnServer))
+            return CheckCodeResult.CodeError;
+        if (code == codelnServer)
+            return CheckCodeResult.OK;
+        else
+        {
+            AccessFail(user);
+            return CheckCodeResult.CodeError;
+        }
+    }
 }
