@@ -6,7 +6,6 @@ namespace ddd.usermanager.domain
         bool IsLockout(User user);
         void AccessFail(User user);
         void ResetAccessFail(User user);
-        Task PublishEventAsync(UserAccessResultEvent e);
         Task<CheckCodeResult> CheckCodeAsync(PhoneNumber phoneNumber, string code);
     }
 }

@@ -39,12 +39,12 @@ public class UserDomainService : IUserDomainService
         }
 
         var e = new UserAccessResultEvent(phoneNumber, result);
-        await PublishEventAsync(e);
+        await PublishUserAccessResultEventAsync(e);
 
         return result;
     }
 
-    public async Task PublishEventAsync(UserAccessResultEvent e)
+    private async Task PublishUserAccessResultEventAsync(UserAccessResultEvent e)
     {
         await mediatr.Publish(e);
     }
