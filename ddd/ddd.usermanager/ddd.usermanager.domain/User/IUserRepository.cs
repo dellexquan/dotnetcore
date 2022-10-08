@@ -7,4 +7,5 @@ public interface IUserRepository
     Task AddNewLoginHistoryAsync(PhoneNumber phoneNumber, string msg);
     Task SavePhoneCodeAsync(PhoneNumber phoneNumber, string code);
     Task<string?> RetrievePhoneCodeAsync(PhoneNumber phoneNumber);
+    Task AddNewUserAsync(User user);
 }

@@ -7,7 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ddd.usermanager.domain\ddd.usermanager.domain.csproj" />
+    <ProjectReference Include="..\ddd.usermanager.efcore\ddd.usermanager.efcore.csproj" />
   </ItemGroup>
 
 </Project>

@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ddd.usermanager.api", "ddd.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ddd.usermanager.domain", "ddd.usermanager\ddd.usermanager.domain\ddd.usermanager.domain.csproj", "{454AD57B-120F-4A07-BC25-A27DD0F0DF17}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ddd.usermanager.efcore", "ddd.usermanager\ddd.usermanager.efcore\ddd.usermanager.efcore.csproj", "{BCB202F2-DC29-4C04-932E-A33AB9862E75}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,9 +52,14 @@ Global
 		{454AD57B-120F-4A07-BC25-A27DD0F0DF17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{454AD57B-120F-4A07-BC25-A27DD0F0DF17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{454AD57B-120F-4A07-BC25-A27DD0F0DF17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCB202F2-DC29-4C04-932E-A33AB9862E75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCB202F2-DC29-4C04-932E-A33AB9862E75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCB202F2-DC29-4C04-932E-A33AB9862E75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCB202F2-DC29-4C04-932E-A33AB9862E75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{018635B7-FDDA-47E4-8A88-B91AB285E2A8} = {16195FCC-0C2E-4706-88DF-33BF6F5C74BC}
 		{454AD57B-120F-4A07-BC25-A27DD0F0DF17} = {16195FCC-0C2E-4706-88DF-33BF6F5C74BC}
+		{BCB202F2-DC29-4C04-932E-A33AB9862E75} = {16195FCC-0C2E-4706-88DF-33BF6F5C74BC}
 	EndGlobalSection
 EndGlobal
